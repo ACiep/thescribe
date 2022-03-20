@@ -1,0 +1,21 @@
+{
+  "name": "thescribe",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Arkadiusz Cieplucha",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack serve"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.7",
+    "babel-loader": "^8.2.3",
+    "html-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "dependencies": {}
+}
