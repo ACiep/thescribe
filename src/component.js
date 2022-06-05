@@ -11,11 +11,12 @@ export function defineComponent(config) {
 }
 
 class Component {
-  constructor($root, config) {
-    this.$root = $root
+  constructor($self, config) {
+    this.$self = $self
     this.mutationTracker = new MutationTracker()
+    const state = typeof config.state === 'function' ? config.state($self) : { ...config.state }
     this.mutableState = new MutableState(
-      { ...config.state },
+      state,
       this.mutationTracker,
     )
     this.targets = []
@@ -32,12 +33,14 @@ class Component {
   loadTargets(config) {
     for (const [name, opts] of Object.entries(config.targets)) {
       const selector = `[data-target=${name}]`
-      const $node = this.$root.querySelector(selector)
+      const $node = this.$self.querySelector(selector)
 
       for (const [effectType, handler] of Object.entries(opts)) {
-        const effect = effectFactory(effectType, $node, this.mutableState.state, handler)
+        const effect = effectFactory(
+          effectType, this.$self, $node, this.mutableState.state, handler,
+        )
         this.mutationTracker.addEffect(effect)
-        const target = new Target($node, effect)
+        const target = new Target(this.$self, $node, effect)
         this.targets.push(target)
       }
     }
@@ -46,8 +49,8 @@ class Component {
   loadFactors(config) {
     for (const [name, events] of Object.entries(config.factors)) {
       const selector = `[data-factor=${name}]`
-      const $node = this.$root.querySelector(selector)
-      const factor = new Factor($node, this.mutableState.state, events)
+      const $node = this.$self.querySelector(selector)
+      const factor = new Factor(this.$self, $node, this.mutableState.state, events)
       this.factors.push(factor)
     }
   }

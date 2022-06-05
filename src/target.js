@@ -1,5 +1,6 @@
 export class Target {
-  constructor($node, effect) {
+  constructor($self, $node, effect) {
+    this.$self = $self
     this.$node = $node
     this.effect = effect
   }

@@ -1,12 +1,12 @@
 import { Effect } from './effect'
 
 export class AttributeEffect extends Effect {
-  constructor($node, state, handler) {
-    super($node, state, handler)
+  constructor($self, $node, state, handler) {
+    super($self, $node, state, handler)
   }
 
   applyEffect() {
-    const attributes = this.handler(this.state)
+    const attributes = this.handler(this.state, this.$self)
     for (let [name, value] of Object.entries(attributes)) {
       if (value === null || value === undefined || value === false) {
         this.$node.removeAttribute(name)

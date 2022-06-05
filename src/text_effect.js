@@ -2,13 +2,13 @@ import { cleanChildren } from './dom'
 import { Effect } from './effect'
 
 export class TextEffect extends Effect {
-  constructor($node, state, handler) {
-    super($node, state, handler)
+  constructor($self, $node, state, handler) {
+    super($self, $node, state, handler)
   }
 
   applyEffect() {
     cleanChildren(this.$node)
-    const text = this.handler(this.state)
+    const text = this.handler(this.state, this.$self)
     if (text === undefined || text === null) {
       return
     }

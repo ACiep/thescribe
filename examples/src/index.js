@@ -1,7 +1,9 @@
 import * as Thescribe from '../../dist/thescribe'
 
 const counterComponent = Thescribe.defineComponent({
-  state: { count: 0 },
+  state: $self => ({
+    count: Number($self.dataset.initValue),
+  }),
 
   targets: {
     count: {
@@ -30,7 +32,7 @@ const counterComponent = Thescribe.defineComponent({
       click: (_e, state) => state.count -= 1,
     },
     reset: {
-      click: (_e, state) => state.count = 0,
+      click: (_e, state, $self) => state.count = Number($self.dataset.initValue),
     },
   },
 })

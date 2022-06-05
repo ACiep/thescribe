@@ -15,7 +15,8 @@ export class Effect {
     },
   }
 
-  constructor($node, state, handler) {
+  constructor($self, $node, state, handler) {
+    this.$self = $self
     this.$node = $node
     this.observedValues = new Set()
     this.state = this.makeProxiedState(state)

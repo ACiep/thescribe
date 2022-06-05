@@ -1,6 +1,6 @@
 {
   "name": "thescribe",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/thescribe.js",
   "license": "MIT",
   "author": "Arkadiusz Cieplucha",

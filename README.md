@@ -105,9 +105,9 @@ app.registerComponent(
 
 ## Incoming features
 - [x] connect components dynamically on DOM changes
+- [x] state initialization based on DOM
 - [ ] lifecycle methods
 - [ ] external state
 - [ ] a way to communicate between components
-- [ ] state initialization based on DOM
 - [ ] scope targets and factors to only one component to make nested components possible
 - [ ] performant function to render HTML
