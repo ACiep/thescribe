@@ -8,9 +8,6 @@ export class AttributeEffect extends Effect {
   applyEffect() {
     const attributes = this.handler(this.state)
     for (let [name, value] of Object.entries(attributes)) {
-      if (name === 'className') {
-        name = 'class'
-      }
       if (value === null || value === undefined || value === false) {
         this.$node.removeAttribute(name)
       } else if (typeof value === 'object') {

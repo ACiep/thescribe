@@ -12,7 +12,6 @@ export class TextEffect extends Effect {
     if (text === undefined || text === null) {
       return
     }
-    const $textNode = document.createTextNode(text)
-    this.$node.appendChild($textNode)
+    this.$node.appendChild(document.createTextNode(text))
   }
 }

@@ -1,1 +1,2 @@
-export { Component } from './component'
+export { Application } from './application'
+export { defineComponent } from './component'

@@ -4,18 +4,27 @@ import { MutationTracker } from './mutation_tracker'
 import { MutableState } from './state'
 import { Target } from './target'
 
-export class Component {
-  constructor(name, config) {
-    this.$root = document.querySelector(`[data-component=${name}]`)
+export function defineComponent(config) {
+  return $node => {
+    return new Component($node, config)
+  };
+}
+
+class Component {
+  constructor($root, config) {
+    this.$root = $root
     this.mutationTracker = new MutationTracker()
-    this.mutableState = new MutableState(config.state, this.mutationTracker)
+    this.mutableState = new MutableState(
+      { ...config.state },
+      this.mutationTracker,
+    )
     this.targets = []
     this.factors = []
 
-    this.connect(config)
+    this.init(config)
   }
 
-  connect(config) {
+  init(config) {
     this.loadTargets(config)
     this.loadFactors(config)
   }

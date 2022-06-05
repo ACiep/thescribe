@@ -1,15 +1,12 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'production',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'thescribe.js',
-    library: {
-      name: 'Thescribe',
-      type: 'umd',
-    },
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -20,4 +17,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+    }),
+  ],
 }
